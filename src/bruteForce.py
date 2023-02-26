@@ -1,7 +1,20 @@
-import numpy
+import math
+import numpy as np
 from closestPairs import euclideanDistance
-euclidCount = 0
+from closestPairs import euclidCount
 
+def bruteForce(points : np.array()):
+    closest = math.inf
+    closestPair = None
 
-def bruteForce(pointArr : numpy.array(), num : int):
-    print()
+    # Iterate over all pairs of points
+    for i in range(len(points)):
+        for j in range(i+1, len(points)):
+            # Calculate the Euclidean distance
+            distance = euclideanDistance(points[i], points[j])
+            # Check for the closest pair
+            if distance < closest:
+                closest = distance
+                closestPair = (points[i], points[j])
+
+    return closestPair, closest
