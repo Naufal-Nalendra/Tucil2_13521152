@@ -1,12 +1,28 @@
 import numpy
 import os
+from sort import quickSort
+
+def validate(prompt, criteria):
+    while True:
+        try:
+            userInput = input(prompt)
+            if criteria(userInput):
+                return userInput
+            else:
+                print("Invalid input. Please try again.")
+                print('------------------------------------------------------------------')
+        except ValueError:
+            print("Invalid input. Please try again.")
+            print('------------------------------------------------------------------')
 
 def Select(randomize : str):
     if (randomize == "y" or randomize == "Y"):
         random = True
-        numPoints = int(input("Enter The Number of Points : "))
-        dimension = int(input("Enter The Number of Dimensions : "))
-        size = int(input("Enter max threshold size for a point : "))
+
+        numPoints = int(validate("Enter the number of points: ", lambda x: int(x) > 0))
+        dimension = int(validate("Enter the number of dimensions: ", lambda x: int(x) > 0))
+        size = int(validate("Enter max threshold size for a point: ", lambda x: int(x) > 0))
+
         points = []
         points = numpy.array(points).astype(float)
         Input = setPoints(numPoints, dimension, size, random, points)
@@ -43,10 +59,13 @@ def setPoints(n_points : int, n_dim : int, size : int, random : bool, inputPoint
     else:
         array = inputPoints
     array = numpy.round(array,2)
-    array = numpy.sort(array, axis=0)
-    return array
+    array = numpy.transpose(array)
+    quickSort(array, dim, 0, num-1)
+    array = numpy.transpose(array)
+    return array, num
 
 def randomPoints(num : int, dim : int, max : int, array):
+    print('------------------------------------------------------------------')
     print("Points are randomized")
     
     vector = []

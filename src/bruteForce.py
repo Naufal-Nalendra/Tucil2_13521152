@@ -1,9 +1,11 @@
 import math
 import numpy as np
 from closestPairs import euclideanDistance
-from closestPairs import euclidCount
 
-def bruteForce(points : np.array()):
+euclidCount = 0
+
+def bruteForce(points : np.array):
+    global euclidCount
     closest = math.inf
     closestPair = None
 
