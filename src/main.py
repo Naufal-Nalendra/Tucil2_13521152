@@ -70,9 +70,9 @@ def main():
         print("The result will be saved in the folder 'images'")
         name = input("Please enter the desired file name :")
         if(dim == 2):
-            pt.plot2d(Input, pair, name)
+            pt.plot2d(Input, pairbf, name)
         elif(dim == 3):
-            pt.plot3d(Input, pair, name)
+            pt.plot3d(Input, pairbf, name)
         else:
             print(dim, 'th', 'dimension cannot be plotted')
     else:

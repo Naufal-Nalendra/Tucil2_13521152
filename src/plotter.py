@@ -13,15 +13,16 @@ def plot2d(pointArr: numpy.array, pairOfPoints : numpy.array, filename : str):
     # Insert points into respective arrays
     numPoints = pointArr.shape[0]
     for i in range(numPoints):
-        if i not in pairOfPoints:
+        if pointArr[i] in pairOfPoints[0]:
+            xres.append(pointArr[i,0])    
+            yres.append(pointArr[i,1])  
+        else:
             x.append(pointArr[i,0])
             y.append(pointArr[i,1])
-        else:
-            xres.append(pointArr[i,0])    
-            yres.append(pointArr[i,1])       
+                 
 
     plt.scatter(x, y, color= "black", linewidth=0.5)
-    plt.scatter(xres, yres, color="orange", linewidth=1.0)
+    plt.scatter(xres, yres, color="orange", linewidth=2.0)
     plt.savefig('images/' + filename + '.png') 
 
     plt.show()
@@ -44,14 +45,15 @@ def plot3d(pointArr: numpy.array, pairOfPoints : numpy.array, filename : str):
     # Insert points into respective arrays
     numPoints = pointArr.shape[0]
     for i in range(numPoints):
-        if i not in pairOfPoints:
+        if pointArr[i] in pairOfPoints[0]:
+            xres.append(pointArr[i,0])    
+            yres.append(pointArr[i,1])    
+            zres.append(pointArr[i,2]) 
+            
+        else:
             x.append(pointArr[i,0])
             y.append(pointArr[i,1])
             z.append(pointArr[i,2])
-        else:
-            xres.append(pointArr[i,0])    
-            yres.append(pointArr[i,1])    
-            zres.append(pointArr[i,2])   
             
     # Labeling the axis
     axis.set_xlabel('X axis')
