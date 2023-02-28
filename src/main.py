@@ -1,8 +1,8 @@
 import time
 import numpy as np
-import os
 import platform
 from inputs import *
+import plotter as pt
 import closestPairs as cp
 import bruteForce as bf
 
@@ -16,8 +16,8 @@ def main():
         print(contents)
     
     # Function to validate inputs
-    randomize = input("Randomize vectors? (y/n) : ")
-    Input, numPoints = Select(randomize)
+    randomize = input("Use Randomized Points? (Y/N) : ")
+    Input, numPoints, dim = Select(randomize)
 
     distance = 0
     pair = None
@@ -52,12 +52,19 @@ def main():
     print("System version : ",platform.platform())
     print("Python version : ",platform.python_version())
 
-    visualize = input("\nVisualize points? (y/n) ")
-    if (visualize == "y"): # also check if dimension <= 3
-        # Function to plot vectors
-        print()
+    visualize = input("\nDo you want to see the result (y/n) ")
+    if (visualize == "y"): 
+        print('------------------------------------------------------------------')
+        print("The result will be saved in the folder 'images'")
+        name = input("Please enter the desired file name :")
+        if(dim == 2):
+            pt.plot2d(Input, pair, name)
+        elif(dim == 3):
+            pt.plot3d(Input, pair, name)
+        else:
+            print(dim, 'th', 'dimension cannot be plotted')
     else:
-        print("Can't visualize vector!") 
+        print('Unable to plot') 
 
 # if __name__ == '__main__':
 #     count = 0

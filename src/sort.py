@@ -1,10 +1,5 @@
 import numpy
 
-# ======================================================================= # 
-
-# DIVIDE AND CONQUER
-# QUICK SORT
-
 def partitioning(vectors: numpy.array, dimension:int, lowerBound: int, upperBound: int):
     # Choose the pivoting
     pivot = vectors[0][upperBound]

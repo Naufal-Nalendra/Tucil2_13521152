@@ -21,7 +21,7 @@ def Select(randomize : str):
 
         numPoints = int(validate("Enter the number of points: ", lambda x: int(x) > 0))
         dimension = int(validate("Enter the number of dimensions: ", lambda x: int(x) > 0))
-        size = int(validate("Enter max threshold size for a point: ", lambda x: int(x) > 0))
+        size = int(validate("Enter the size of a point: ", lambda x: int(x) > 0))
 
         points = []
         points = numpy.array(points).astype(float)
@@ -62,7 +62,7 @@ def setPoints(n_points : int, n_dim : int, size : int, random : bool, inputPoint
     array = numpy.transpose(array)
     quickSort(array, dim, 0, num-1)
     array = numpy.transpose(array)
-    return array, num
+    return array, num, dim
 
 def randomPoints(num : int, dim : int, max : int, array):
     print('------------------------------------------------------------------')
