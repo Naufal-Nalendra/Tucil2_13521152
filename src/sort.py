@@ -1,29 +1,37 @@
 import numpy
 
-def partitioning(vectors: numpy.array, dimension:int, lowerBound: int, upperBound: int):
-    # Choose the pivoting
-    pivot = vectors[0][upperBound]
-    # Pointer
-    i = lowerBound - 1
+def quickSort(points: numpy.array, dimension: int, lowerIdx: int, upperIdx: int):
+    if lowerIdx < upperIdx:
+        # First partition to search for pivot
+        index = Partition(points, dimension, lowerIdx, upperIdx)
+        # Apply recursion for the left and right side of pivot
+        quickSort(points, dimension, lowerIdx, index - 1)
+        quickSort(points, dimension, index + 1, upperIdx)
+        
+def Partition(points: numpy.array, dimension : int, lowerIdx: int, upperIdx: int):
+    # Choose first column of last row as pivot
+    pivot = points[upperIdx][0]
 
-    # Traverse and comparing value with pivot
-    for j in range(lowerBound, upperBound):
-        # Swapping if value is lower
-        if vectors[0][j] <= pivot:
-            i += 1
-            for k in range(dimension):
-                (vectors[k][i], vectors[k][j]) = (vectors[k][j], vectors[k][i])
-    # Swapping pivot element
+    # Count the number of pass
+    passed = lowerIdx - 1
+
+    # Compare points value with pivot
+    for j in range(lowerIdx, upperIdx):
+        # Swap if lower than pivot
+        if points[j][0] <= pivot:
+            passed += 1
+            for col in range(dimension):
+                temp = points[j][col]
+                points[j][col] = points[passed][col]
+                points[passed][col] = temp
+
+    # Swap with pivot
     for p in range(dimension):
-        (vectors[p][i+1], vectors[p][upperBound]) = (vectors[p][upperBound], vectors[p][i+1])
-    # Return pointer
-    return (i+1)
+        temp = points[upperIdx][p]
+        points[upperIdx][p] = points[passed+1][p]
+        points[passed+1][p] = temp
+    
+    # Return index for the next sort
+    return (passed+1)
 
-def quickSort(vectors: numpy.array, dimension: int, lowerBound: int, upperBound: int):
-    if lowerBound < upperBound:
-        # Finding pivot element
-        x = partitioning(vectors, dimension, lowerBound, upperBound)
-        # Recursive on the left and right of pivot
-        quickSort(vectors, dimension, lowerBound, x-1)
-        quickSort(vectors, dimension, x+1, upperBound)
 

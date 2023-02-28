@@ -153,4 +153,4 @@ def ClosestPair(points : numpy.array, n : int):
                 if distance < closest:
                     closest = distance
                     pointsPair = numpy.array([midPoints[i], midPoints[j]])
-    return (pointsPair, numpy.round(closest, 2))
+    return (pointsPair, numpy.round(closest, 3))

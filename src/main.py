@@ -16,8 +16,7 @@ def main():
         print(contents)
     
     # Function to validate inputs
-    randomize = input("Use Randomized Points? (Y/N) : ")
-    Input, numPoints, dim = Select(randomize)
+    Input, numPoints, dim = generatePoints()
 
     distance = 0
     pair = None
@@ -25,14 +24,16 @@ def main():
     divImpera1 = time.perf_counter()
     # Function to find closest Pair using divide and conquer
     pair, distance = cp.ClosestPair(Input,numPoints)
+    dnc = cp.euclidCount
     divImpera2 = time.perf_counter()
     # Function to find closest Pair using brute force
     pair2, distance2 = bf.bruteForce(Input)
+    bfCount = bf.euclidCount
     bruteForceEnd = time.perf_counter()
 
     # output variables
-    divImperaTime = (divImpera2 - divImpera1)
-    bruteForceTime = (bruteForceEnd - divImpera2)
+    divImperaTime = numpy.round(divImpera2 - divImpera1, 8)
+    bruteForceTime = numpy.round(bruteForceEnd - divImpera2, 8)
 
     print('------------------------------------------------------------------')
     print('The closest pair of points are :')
@@ -40,7 +41,7 @@ def main():
     print(pair[1])
     # print second point
     print('\nWith the distance of :', distance)
-    print('And the count of euclidean operations :', cp.euclidCount)
+    print('And the count of euclidean operations :', dnc)
     print('------------------------------------------------------------------')
     # Execution time for DnC and brute force
     print("Divide and Conquer execution time :",divImperaTime * 1000,"ms")
@@ -52,8 +53,8 @@ def main():
     print("System version : ",platform.platform())
     print("Python version : ",platform.python_version())
 
-    visualize = input("\nDo you want to see the result (y/n) ")
-    if (visualize == "y"): 
+    visualize = input("\nDo you want to see the plot? (Y/N) ")
+    if (visualize == "y" or visualize == "Y"): 
         print('------------------------------------------------------------------')
         print("The result will be saved in the folder 'images'")
         name = input("Please enter the desired file name :")
@@ -64,10 +65,7 @@ def main():
         else:
             print(dim, 'th', 'dimension cannot be plotted')
     else:
-        print('Unable to plot') 
-
-# if __name__ == '__main__':
-#     count = 0
-#     rand = 1000.0
-#     main()
+        print('Thank you for using our program :) ') 
+        
+# run main
 main()

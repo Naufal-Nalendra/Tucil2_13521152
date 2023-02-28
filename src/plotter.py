@@ -52,7 +52,8 @@ def plot3d(pointArr: numpy.array, pairOfPoints : numpy.array, filename : str):
             xres.append(pointArr[i,0])    
             yres.append(pointArr[i,1])    
             zres.append(pointArr[i,2])   
-    # Setting labels for plot
+            
+    # Labeling the axis
     axis.set_xlabel('X axis')
     axis.set_ylabel('Y axis')
     axis.set_zlabel('Z axis')
