@@ -18,9 +18,9 @@ def validate(prompt, criteria):
 def generatePoints():
     random = True
 
-    numPoints = int(validate("Enter the number of points: ", lambda x: int(x) > 0))
+    numPoints = int(validate("\nEnter the number of points: ", lambda x: int(x) > 0))
     dimension = int(validate("Enter the number of dimensions: ", lambda x: int(x) > 0))
-    size = int(validate("Enter the size of a point: ", lambda x: int(x) > 0))
+    size = int(validate("Enter the max range of a point: ", lambda x: int(x) > 0))
 
     points = []
     points = numpy.array(points).astype(float)

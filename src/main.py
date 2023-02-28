@@ -27,24 +27,35 @@ def main():
     dnc = cp.euclidCount
     divImpera2 = time.perf_counter()
     # Function to find closest Pair using brute force
-    pair2, distance2 = bf.bruteForce(Input)
-    bfCount = bf.euclidCount
+    pairbf, distancebf = bf.bruteForce(Input)
+    bfdistance = numpy.round(distancebf, 3)
+    bfCount = bf.count
     bruteForceEnd = time.perf_counter()
 
     # output variables
     divImperaTime = numpy.round(divImpera2 - divImpera1, 8)
     bruteForceTime = numpy.round(bruteForceEnd - divImpera2, 8)
-
+    # Divide and Conquer Algorithm
+    print('------------------------------------------------------------------')
+    print('DIVIDE AND CONQUER')
     print('------------------------------------------------------------------')
     print('The closest pair of points are :')
     print(pair[0])
     print(pair[1])
     # print second point
     print('\nWith the distance of :', distance)
-    print('And the count of euclidean operations :', dnc)
-    print('------------------------------------------------------------------')
-    # Execution time for DnC and brute force
+    print('And the count of euclidean operations in DnC :', dnc)
     print("Divide and Conquer execution time :",divImperaTime * 1000,"ms")
+    # Brute Force Algorithm
+    print('------------------------------------------------------------------')
+    print('BRUTE FORCE')
+    print('------------------------------------------------------------------')
+    print('The closest pair of points are :')
+    print(pairbf[0])
+    print(pairbf[1])
+    # print second point
+    print('\nWith the distance of :', bfdistance)
+    print('And the count of euclidean operations in Brute Force :', bfCount)
     print("Brute Force execution time :",bruteForceTime * 1000,"ms")
     print('------------------------------------------------------------------')
     # PC specifications
